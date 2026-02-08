@@ -51,6 +51,12 @@ Key ideas behind the analytics-first approach:
 
 
 ### 🧭 Architecture Overview
+## 🧭 Architecture Overview
+
+The platform is built as a layered analytical data warehouse, fully decoupled from the OLTP system.
+
+![DWH Architecture](docs/images/architecture_diagram.png)
+
 ```text
 MS SQL Server 2005 (MiniSoft, private network)
         │
@@ -63,6 +69,82 @@ PostgreSQL 16 (DWH)
 ├── silver  — prepared and cleaned data
 └── gold    — analytical model (facts / dimensions)
 ```
+🧱 Data Layers (Bronze → Silver → Gold)
+
+## 🧱 Data Layers
+
+The data warehouse follows a strict layered architecture:
+
+- **Bronze** — raw, immutable copies of source tables  
+- **Silver** — cleaned, normalized, and semantically prepared data  
+- **Gold** — analytical facts and dimensions designed for reporting
+
+  ### 🟡 Bronze Layer (Raw Data)
+
+The Bronze layer contains raw copies of source tables imported via FDW.
+No transformations are applied at this stage.
+
+Examples:
+- `clients`
+- `sales`
+- `sales_product`
+- `prihod`
+- `product`
+- `users`
+
+This layer serves as a stable, reproducible snapshot of the source system.
+### ⚪ Silver Layer (Prepared Data)
+
+The Silver layer transforms raw source data into analytical-friendly structures.
+
+Key transformations:
+- normalization of document types
+- separation of financial and inventory flows
+- explicit sign handling (sales / returns / write-offs)
+- preparation of price history and reference tables
+- ## 📄 Document Normalization (Gold)
+
+All operational documents (sales, purchases, returns, write-offs)
+are normalized into a single document dimension.
+
+![dim_documents](docs/images/dim_documents.png)
+Why this matters:
+
+one document model for all facts
+
+consistent joins across financial and inventory flows
+
+explicit document semantics (document_type, original_table)
+
+## 💰 Financial Flow Transformation
+
+Sales and returns from the OLTP system are transformed into a unified financial fact table.
+
+![Source Sales (MS SQL)](docs/images/minisoft_sales.png)
+
+↓
+
+![Gold Financial Flow](docs/images/fact_financial_flow.png)
+### 🧠 Key Design Decisions
+
+- Sales and returns are stored separately in Silver
+- Direction (+ / −) is applied during Gold unification
+- Profit is calculated explicitly, not inferred
+### 🧮 Gold Financial Flow Logic (SQL)
+
+The financial fact is built using explicit UNION ALL logic
+to preserve transparency and correctness.
+
+![fact_financial_flow.sql](docs/images/fact_financial_flow.sql.png)
+
+## 📦 Inventory Transactions
+
+Inventory movements are modeled independently from financial flows
+and unified at the Gold layer.
+
+![Inventory Transactions](docs/images/fact_inventory_transactions.png)
+
+
 🧩 Core Principles
 * FDW instead of ETL — direct reads from MS SQL.
 
@@ -136,6 +218,12 @@ make rebuild
 ```
 Result: a fully operational analytical DWH.
 
+## 🔁 Rebuild Process
+
+Rebuilds are safe, repeatable, and observable operations.
+
+![Rebuild Gold Layer](docs/images/rebuildgold.png)
+
 Regular Rebuild
 ```
 make rebuild
@@ -157,6 +245,12 @@ This separation protects both the OLTP system and the analytical platform.
  ```
  **Run `make help` to see the list of available automated commands.
 ```
+## 🛠️ Automation
+
+The platform is fully controlled via Makefile commands.
+
+![Makefile Commands](docs/images/makefile.png)
+
 ➕ Adding New Source Tables
 Update fdw_import.sql.
 
