@@ -431,3 +431,8 @@ make rebuild
 ```
 Artur Hapurkhaiev 
 DWH / Data Platform Engineering
+
+## ⚖️ Legal Notice
+This project is part of my professional portfolio. 
+The architecture, SQL logic, and documentation are the intellectual property of the author.
+Commercial use or redistribution without prior consent is strictly prohibited.
