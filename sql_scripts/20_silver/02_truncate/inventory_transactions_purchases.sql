@@ -1,0 +1,1 @@
+TRUNCATE TABLE silver.inventory_transactions_purchases;

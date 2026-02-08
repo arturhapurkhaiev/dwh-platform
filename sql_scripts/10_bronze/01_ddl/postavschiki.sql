@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS bronze.postavschiki (
+    source_id int NOT NULL,
+    postav_code int NOT NULL,
+    postav_name text NOT NULL,
+    yuradres text NULL,
+    fadres text NULL,
+    phone text NULL,
+    egrpou text NULL,
+    bank text NULL,
+    isfizlico boolean NULL,
+    email text NULL,
+    asite text NULL,
+    direktor text NULL,
+    kontakt text NULL,
+    other text NULL,
+    inn text NULL,
+    nomer_svidetelstva text NULL,
+    credit_day int NOT NULL,
+    isinternal boolean NOT NULL,
+    isactive boolean NOT NULL,
+    load_dt timestamp NOT NULL
+);

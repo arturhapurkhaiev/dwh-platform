@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS bronze.prihod (
+    source_id int NOT NULL,
+    prihod_code int NOT NULL,
+    prihoddate timestamp NOT NULL,
+    prihoduser int NULL,
+    prihodsumma numeric(24,2) NOT NULL,
+    other text NULL,
+    postav_code int NULL,
+    type int NOT NULL,
+    postavsumma numeric(24,2) NULL,
+    tax_date timestamp NULL,
+    tax_number text NULL,
+    prihodstate int NOT NULL,
+    postavnakladnumber text NULL,
+    invent_code int NULL,
+    currency int NOT NULL,
+    exchange double precision NULL,
+    odate timestamp NULL,
+    load_dt timestamp NOT NULL
+);

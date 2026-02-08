@@ -1,0 +1,36 @@
+INSERT INTO bronze.pereocenka_product (
+    source_id,
+    pereocenka_product_code,
+    pereocenka_code,
+    product_code,
+    old_cena,
+    new_cena,
+    perc,
+    pname,
+    kolvo,
+    old_optcena,
+    new_optcena,
+    optperc,
+    old_postavcena,
+    new_postavcena,
+    postavperc,
+    load_dt
+)
+SELECT
+    1 AS source_id,
+    pereocenka_product_code,
+    pereocenka_code,
+    product_code,
+    old_cena,
+    new_cena,
+    perc,
+    pname,
+    kolvo,
+    old_optcena,
+    new_optcena,
+    optperc,
+    old_postavcena,
+    new_postavcena,
+    postavperc,
+    now() AS load_dt
+FROM mssql.pereocenka_product;

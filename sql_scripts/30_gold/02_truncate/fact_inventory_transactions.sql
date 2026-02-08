@@ -1,0 +1,1 @@
+TRUNCATE TABLE gold.fact_inventory_transactions;

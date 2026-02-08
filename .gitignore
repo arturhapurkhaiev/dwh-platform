@@ -1,0 +1,18 @@
+# Docker volumes / runtime data
+data/
+logs/
+
+# Secrets / keys
+.env
+*.key
+privatekey
+publickey
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Python leftovers (just in case)
+__pycache__/
+*.pyc

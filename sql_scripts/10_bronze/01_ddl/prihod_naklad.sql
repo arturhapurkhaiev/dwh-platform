@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS bronze.prihod_naklad (
+    source_id int NOT NULL,
+    prihod_naklad_code int NOT NULL,
+    prihod_code int NOT NULL,
+    pname text NOT NULL,
+    kol numeric(24,4) NOT NULL,
+    cena numeric(24,3) NULL,
+    product_code int NOT NULL,
+    nacenka double precision NULL,
+    group_code int NULL,
+    cardnumberean text NULL,
+    old_pname text NULL,
+    article text NULL,
+    edenicaizm text NULL,
+    cenapost numeric(24,2) NULL,
+    sales_product_code int NULL,
+    expiration_date timestamp NULL,
+    certificate_number text NULL,
+    optcena numeric(24,2) NULL,
+    optnacenka double precision NULL,
+    load_dt timestamp NOT NULL
+);

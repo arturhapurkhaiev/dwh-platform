@@ -1,0 +1,8 @@
+[Interface]
+PrivateKey = <PRIVATE_KEY>
+Address = 10.13.13.1/24
+
+[Peer]
+PublicKey = <WINDOWS_PUBLIC_KEY>
+Endpoint = <WINDOWS_IP>:51820
+AllowedIPs = 10.13.13.2/32

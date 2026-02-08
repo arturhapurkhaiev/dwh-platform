@@ -1,0 +1,19 @@
+services:
+  postgres:
+    build: ./services/postgres
+    image: dwh-postgres:16-tds
+    container_name: dwh-postgres
+
+    environment:
+      POSTGRES_DB: dwh
+      POSTGRES_USER: dwh
+      POSTGRES_PASSWORD: dwh
+
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+    ports:
+      - "5432:5432"
+
+    restart: unless-stopped
+
