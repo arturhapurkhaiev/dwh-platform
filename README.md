@@ -154,8 +154,9 @@ any write operations to the source system
 
 This separation protects both the OLTP system and the analytical platform.
 
+ ```
  **Run `make help` to see the list of available automated commands.
-
+```
 ➕ Adding New Source Tables
 Update fdw_import.sql.
 
@@ -313,8 +314,9 @@ make rebuild
 
 Таке розділення захищає як OLTP-систему, так і аналітичну платформу.
 
+ ```
  **Виконайте `make help`, щоб переглянути список доступних автоматизованих команд.
-
+```
 ➕ Додавання нових таблиць
 Оновити fdw_import.sql.
 
