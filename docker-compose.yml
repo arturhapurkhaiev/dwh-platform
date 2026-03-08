@@ -1,4 +1,5 @@
 services:
+
   postgres:
     build: ./services/postgres
     image: dwh-postgres:16-tds
@@ -17,3 +18,18 @@ services:
 
     restart: unless-stopped
 
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: dwh-metabase
+
+    ports:
+      - "3000:3000"
+
+    volumes:
+      - ./data/metabase:/metabase-data
+
+    restart: unless-stopped
+
+    depends_on:
+      - postgres
