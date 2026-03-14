@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: dwh
 
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
     ports:
       - "5432:5432"
@@ -27,9 +27,14 @@ services:
       - "3000:3000"
 
     volumes:
-      - ./data/metabase:/metabase-data
+      - metabase_data:/metabase-data
 
     restart: unless-stopped
 
     depends_on:
       - postgres
+
+
+volumes:
+  postgres_data:
+  metabase_data:
